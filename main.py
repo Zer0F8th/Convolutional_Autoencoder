@@ -14,14 +14,43 @@ import time
 # Logs will be shown in the console.
 BASE_DIR = os.path.dirname(os.path.abspath(__file__)) # Get script directory
 LOG_DIR = os.path.join(BASE_DIR, 'logs') # Directory for logs
-os.makedirs(LOG_DIR, exist_ok=True) # Create log directory if it doesn't exist
-logging.basicConfig(filename='logs/run.log',
-                    level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S')
+# --- Logging Configuration ---
+log_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s',
+                                  datefmt='%Y-%m-%d %H:%M:%S')
+log_file = os.path.join(LOG_DIR, 'run.log')
 
+# Get the root logger
+logger = logging.getLogger()
+logger.setLevel(logging.INFO) # Set the minimum level for the logger
+
+# --- File Handler ---
+# Logs messages to the run.log file
+file_handler = logging.FileHandler(log_file)
+file_handler.setFormatter(log_formatter)
+# file_handler.setLevel(logging.INFO) # Optional: Set level specific to this handler
+
+# --- Stream Handler ---
+# Logs messages to the console (stderr by default, which is usually fine)
+# Use logging.StreamHandler(sys.stdout) for explicit stdout
+stream_handler = logging.StreamHandler()
+stream_handler.setFormatter(log_formatter)
+
+# --- Add Handlers to the Logger ---
+# Avoid adding handlers multiple times if script is re-run in interactive session
+if not logger.handlers:
+    logger.addHandler(file_handler)
+    logger.addHandler(stream_handler)
+else:
+    # Optional: Clear existing handlers if necessary (e.g., in notebooks)
+    # logger.handlers.clear()
+    # logger.addHandler(file_handler)
+    # logger.addHandler(stream_handler)
+    pass # Handlers already exist
+
+# --- Start Logging ---
 logging.info("Script started.")
-logging.info(f"Current time: {time.strftime('%Y-%m-%d %H:%M:%S %Z')}") # Add current time
+logging.info(f"Current time: {time.strftime('%Y-%m-%d %H:%M:%S %Z')}")
+
 
 # --- Configuration ---
 IMG_WIDTH_SMALL = 28
