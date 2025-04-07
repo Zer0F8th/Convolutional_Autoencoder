@@ -13,7 +13,7 @@ import time
 # --- Logging Configuration ---
 # Logs will be shown in the console.
 BASE_DIR = os.path.dirname(os.path.abspath(__file__)) # Get script directory
-LOG_DIR = os.joinpath(BASE_DIR, 'logs') # Directory for logs
+LOG_DIR = os.path.join(BASE_DIR, 'logs') # Directory for logs
 os.makedirs(LOG_DIR, exist_ok=True) # Create log directory if it doesn't exist
 logging.basicConfig(filename='logs/run.log',
                     level=logging.INFO,

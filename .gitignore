@@ -8,7 +8,10 @@ lib/*
 lib64/*
 share/*
 pyvenv.cfg
-
-# Ignore Local Logs
-logs/run.log
 lib64
+
+# Ignore Output files
+logs/run.log
+processed_data/*
+visualization_outputs/*
+upscaler_autoencoder_56x56_1ch.h5
