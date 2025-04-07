@@ -1,0 +1,14 @@
+# Ignore Data Directory as its too large
+data/
+
+# Ignore venv directories
+bin/*
+include/*
+lib/*
+lib64/*
+share/*
+pyvenv.cfg
+
+# Ignore Local Logs
+logs/run.log
+lib64
