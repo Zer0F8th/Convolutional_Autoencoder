@@ -7,7 +7,7 @@
 
 This project implements a Convolutional Autoencoder (CAE) using TensorFlow and Keras to perform image upscaling. The goal is to take low-resolution (28x28) images of cats and dogs as input and train the network to generate higher-resolution versions (configurable, default 56x56). This assignment focuses on the autoencoder architecture for reconstruction and dimensionality change, *not* on image classification.
 
-[](images/upscale_viz_10890.png)
+![Upscaled Image](./images/upscale_viz_10890.png)
 
 ## Features
 
